@@ -1,1 +1,12 @@
 #!/bin/bash
+movies=("MARRY POPPINS" "COCO" "MOONLIGHT" "MAD MAX")
+options=("M__RY PO___NS" "C__0" "M__NL____" "M__ ___")
+
+
+count=0
+while true;
+do
+   printf "   %s\n" "${options[$count]}"
+   read -d '' -sn 1
+   echo $REPLY
+done
