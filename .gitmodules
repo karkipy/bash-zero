@@ -1,3 +1,7 @@
 [submodule "ip"]
 	path = ip
 	url = https://github.com/karkipy/whichIp
+
+[submodule "hangman"]
+	path = hangman
+	url = https://github.com/karkipy/hangman
