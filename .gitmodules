@@ -5,3 +5,6 @@
 [submodule "hangman"]
 	path = hangman
 	url = https://github.com/karkipy/hangman
+[submodule "game/2048"]
+	path = game/2048
+	url = https://github.com/karkipy/2048
