@@ -1,0 +1,6 @@
+ADDCMD="git add -A"
+COMMITCMD="git commit -m 'Update Readme' "
+
+
+eval $ADDCMD
+eval $COMMITCMD
