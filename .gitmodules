@@ -1,3 +1,6 @@
 [submodule "diwo"]
 	path = diwo
 	url = https://github.com/karkipy/diwo
+[submodule "ip"]
+	path = ip
+	url = https://github.com/karkipy/whichIp/
