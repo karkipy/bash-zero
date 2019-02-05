@@ -4,3 +4,6 @@
 [submodule "ip"]
 	path = ip
 	url = https://github.com/karkipy/whichIp/
+[submodule "game/2048"]
+	path = game/2048
+	url = https://github.com/karkipy/2048
