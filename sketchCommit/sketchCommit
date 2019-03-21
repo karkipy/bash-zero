@@ -4,7 +4,9 @@ case "$1" in
   "b")
     addCMD=$(eval "git add -A")
     commitCMD="git commit -m'${@:3}'"
-    $(eval "git commit -m \'something\'")
+    # $(eval "git commit -m \'something\'")
+    echo $commitCMD
+    $(eval $commitCMD)
     # $(eval "git push origin $2")
     ;;
   *)
