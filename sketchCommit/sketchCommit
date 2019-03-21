@@ -5,7 +5,7 @@ case "$1" in
     addCMD=$(eval "git add -A")
     commitCMD="git commit -m'${@:3}'"
     $(eval "git commit -m 'something'")
-    $(eval "git push origin $2")
+    # $(eval "git push origin $2")
     ;;
   *)
     echo 'no branch'
