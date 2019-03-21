@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
-echo "hello"
-echo $1
-
 case "$1" in
   "b")
     addCMD=$(eval "git add -A")
     commitCMD="git commit -m '${@:3}'"
-    echo $commitCMD
     $(eval $commitCMD)
     $(eval "git push origin $2")
     ;;
