@@ -2,14 +2,13 @@
 
 case "$1" in
   "b")
-    addCMD=$(eval "git add -A")
-    # commitCMD="git commit -m'${@:3}'"
-    # # $(eval "git commit -m \'something\'")
-    # echo $commitCMD
-    # $(eval $commitCMD)
+    git add -A
     git commit -m ${@:3}
+    git push origin $2
     ;;
   *)
-    echo 'no branch'
+    git add -A
+    git commit -m ${@:1}
+    git push origin sketch
     ;;
 esac
