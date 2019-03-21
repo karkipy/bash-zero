@@ -7,7 +7,7 @@ case "$1" in
     # # $(eval "git commit -m \'something\'")
     # echo $commitCMD
     # $(eval $commitCMD)
-    git commit -m "something"
+    git commit -m ${@:3}
     ;;
   *)
     echo 'no branch'
