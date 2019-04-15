@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import glob
+import re
+
+pngFiles = []
+export = []
+for file in glob.glob("*.png"):
+  if not re.search("@", file) :
+    name = re.split(".png", file)[0]
+    title = "import " + name + " from " + "'./" + file + "';"
+    pngFiles.append(title)
+    export.append(name)
+
+importText = "\n".join(str(x) for x in pngFiles)
+exportText = ",\n  ".join(str(x) for x in export)
+f= open("index.js","w+")
+f.write(importText)
+f.write('\n\n')
+f.write('export {\n  ')
+f.write(exportText)
+f.write(',\n};\n')
