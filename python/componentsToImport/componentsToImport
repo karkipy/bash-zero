@@ -3,16 +3,16 @@
 import glob
 import re
 
-pngFiles = []
+componentFiles = []
 export = []
-for file in glob.glob("*.png"):
-  if not re.search("@", file) :
-    name = re.split(".js", file)[0]
-    title = "import " + name + " from " + "'./" + file + "';"
-    pngFiles.append(title)
+for file in glob.glob("*.js"):
+  name = re.split(".js", file)[0]
+  if str(name)[0].isupper():
+    title = "import " + name + " from " + "'./" + name + "';"
+    componentFiles.append(title)
     export.append(name)
 
-importText = "\n".join(str(x) for x in pngFiles)
+importText = "\n".join(str(x) for x in componentFiles)
 exportText = ",\n  ".join(str(x) for x in export)
 f= open("index.js","w+")
 f.write(importText)
