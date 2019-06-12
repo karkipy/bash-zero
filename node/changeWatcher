@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const http = require('http');
+const { execSync } = require('child_process');
+
+
+let serv = http.createServer(function (req, res) {
+ fs.readFile('index.html',function (err, data){
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+        res.write(data);
+    });
+});
+
+serv.listen(8889);
+
+
+fs.watch('./', (eventType, filename) => {
+  serv.close( function () {
+    // serv.listen(8889);
+    // execSync('open http://localhost:8889')
+    console.log('close server')
+  });
+})
+
+execSync('open http://localhost:8889')
