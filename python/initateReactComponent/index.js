@@ -1,3 +1,3 @@
-import ReactFolder from './ReactFolder';
+import initateReactComponent from './initateReactComponent';
 
-export default ReactFolder;
+export default initateReactComponent;
