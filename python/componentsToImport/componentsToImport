@@ -2,21 +2,28 @@
 
 import glob
 import re
+import os
 
 componentFiles = []
 export = []
-for file in glob.glob("*.js"):
-  name = re.split(".js", file)[0]
-  if str(name)[0].isupper():
-    title = "import " + name + " from " + "'./" + name + "';"
+for file in glob.glob('*'):
+  isDir = os.path.isdir(file)
+  if isDir & str(file)[0].isupper():
+    title = "import " + file + " from " + "'./" + file + "';"
     componentFiles.append(title)
-    export.append(name)
+    export.append(file)
+  elif file.endswith('.js') & str(file)[0].isupper():
+    fileName = str(file).replace('.js', '')
+    title = "import " + fileName + " from " + "'./" + fileName + "';"
+    componentFiles.append(title)
+    export.append(fileName)
 
-importText = "\n".join(str(x) for x in componentFiles)
-exportText = ",\n  ".join(str(x) for x in export)
-f= open("index.js","w+")
-f.write(importText)
-f.write('\n\n')
-f.write('export {\n  ')
-f.write(exportText)
-f.write(',\n};\n')
+if len(componentFiles) > 0 :
+  importText = "\n".join(str(x) for x in componentFiles)
+  exportText = ",\n  ".join(str(x) for x in export)
+  f= open("index.js","w+")
+  f.write(importText)
+  f.write('\n\n')
+  f.write('export {\n  ')
+  f.write(exportText)
+  f.write(',\n};\n')
