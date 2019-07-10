@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import glob
+import re
+import os
+
+
+current_folder_path, current_folder_name = os.path.split(os.getcwd())
+folderName = current_folder_name
+
+f= open("index.js","w+")
+header = "import " + folderName + " from " + "'./" + folderName + "';"
+f.write(header)
+f.write('\n\n')
+footer = "export default " + folderName + ";"
+f.write(footer)
+f.write('\n')
+f.close()
+
+
+fileParent = folderName + ".js"
+f = open(fileParent, "w+")
+
+
+
+
+header = "import React from 'react';"
+f.write(header)
+f.write('\n\n')
+
+body = "function " + folderName + "() {"
+f.write(body)
+f.write('\n')
+f.write('\t return();')
+f.write('\n')
+f.write('}')
+f.write('\n\n')
+
+footer = "export default " + folderName + ";"
+f.write(footer)
+f.write('\n')
+
+
+f.close()
