@@ -31,7 +31,7 @@ f.write('\n\n')
 body = "function " + folderName + "() {"
 f.write(body)
 f.write('\n')
-f.write('\t return null;')
+f.write('  return null;')
 f.write('\n')
 f.write('}')
 f.write('\n\n')

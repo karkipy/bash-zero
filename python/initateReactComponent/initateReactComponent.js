@@ -1,7 +1,7 @@
 import React from 'react';
 
 function initateReactComponent() {
-	 return null;
+    return null;
 }
 
 export default initateReactComponent;
