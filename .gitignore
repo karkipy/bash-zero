@@ -1,3 +1,4 @@
 basics/
 game/snake
 game/runner
+.DS_Store
