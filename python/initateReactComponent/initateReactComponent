@@ -3,42 +3,78 @@
 import glob
 import re
 import os
+import sys
+import shutil
+
+class Error(Exception):
+   """Base class for other exceptions"""
+   pass
+class CapitalizationError(Error):
+   """Raised when the input value is too small"""
+   pass
 
 
-current_folder_path, current_folder_name = os.path.split(os.getcwd())
-folderName = current_folder_name
-
-f= open("index.js","w+")
-header = "import " + folderName + " from " + "'./" + folderName + "';"
-f.write(header)
-f.write('\n\n')
-footer = "export default " + folderName + ";"
-f.write(footer)
-f.write('\n')
-f.close()
+def removeFolder(folderName):
+  shutil.rmtree(folderName)
 
 
-fileParent = folderName + ".js"
-f = open(fileParent, "w+")
+def initateComponent(folderName):
+  os.mkdir(folderName)
+  f= open(folderName + "/index.js","w+")
+  header = "import " + folderName + " from " + "'./" + folderName + "';"
+  f.write(header)
+  f.write('\n\n')
+  footer = "export default " + folderName + ";"
+  f.write(footer)
+  f.write('\n')
+  f.close()
+
+
+  fileParent = folderName + ".js"
+  f = open(folderName + "/" + fileParent, "w+")
 
 
 
 
-header = "import React from 'react';"
-f.write(header)
-f.write('\n\n')
+  header = "import React from 'react';"
+  f.write(header)
+  f.write('\n\n')
 
-body = "function " + folderName + "() {"
-f.write(body)
-f.write('\n')
-f.write('  return null;')
-f.write('\n')
-f.write('}')
-f.write('\n\n')
+  body = "function " + folderName + "() {"
+  f.write(body)
+  f.write('\n')
+  f.write('  return null;')
+  f.write('\n')
+  f.write('}')
+  f.write('\n\n')
 
-footer = "export default " + folderName + ";"
-f.write(footer)
-f.write('\n')
+  footer = "export default " + folderName + ";"
+  f.write(footer)
+  f.write('\n')
 
 
-f.close()
+  f.close()
+  print("React Component : " + folderName + " Created ")
+
+
+
+try :
+  folderName = sys.argv[1]
+  if str(folderName)[0].isupper():
+    if not os.path.exists(folderName):
+      initateComponent(folderName)
+    else:
+      decision = raw_input(folderName + "Already Exists, override ? Y/N : ")
+      if str(decision).strip().lower() == 'y':
+        removeFolder(folderName)
+        initateComponent(folderName)
+  else:
+    raise CapitalizationError
+
+except IndexError:
+  print('Provide Folder Name')
+
+except CapitalizationError:
+  print('Folder Name must be Capitalized')
+
+
