@@ -5,12 +5,17 @@ import re
 
 pngFiles = []
 export = []
-for file in glob.glob("*.png"):
+
+extensionsToCheck = ('.png', '.jpg', '.svg')
+
+for file in glob.glob("*"):
   if not re.search("@", file) :
-    name = re.split(".png", file)[0]
-    title = "import " + name + " from " + "'./" + file + "';"
-    pngFiles.append(title)
-    export.append(name)
+    if file.endswith(extensionsToCheck):
+      name = re.split('(\.png$|\.jpg$|\.svg$)', file)[0]
+      print(file.endswith(extensionsToCheck))
+      title = "import " + name + " from " + "'./" + file + "';"
+      pngFiles.append(title)
+      export.append(name)
 
 importText = "\n".join(str(x) for x in pngFiles)
 exportText = ",\n  ".join(str(x) for x in export)
