@@ -12,7 +12,6 @@ for file in glob.glob("*"):
   if not re.search("@", file) :
     if file.endswith(extensionsToCheck):
       name = re.split('(\.png$|\.jpg$|\.svg$)', file)[0]
-      print(file.endswith(extensionsToCheck))
       title = "import " + name + " from " + "'./" + file + "';"
       pngFiles.append(title)
       export.append(name)
