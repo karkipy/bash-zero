@@ -1,4 +1,7 @@
 basics/
 game/snake
 game/runner
+tab_refresh
+node/
+fonts/
 .DS_Store
