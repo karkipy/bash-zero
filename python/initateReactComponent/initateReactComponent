@@ -18,9 +18,9 @@ def removeFolder(folderName):
   shutil.rmtree(folderName)
 
 
-def initateComponent(folderName):
+def initateComponent(folderName, extensionName):
   os.mkdir(folderName)
-  f= open(folderName + "/index.js","w+")
+  f= open(folderName + "/index."+extensionName,"w+")
   header = "import " + folderName + " from " + "'./" + folderName + "';"
   f.write(header)
   f.write('\n\n')
@@ -30,7 +30,7 @@ def initateComponent(folderName):
   f.close()
 
 
-  fileParent = folderName + ".js"
+  fileParent = folderName + "."+extensionName
   f = open(folderName + "/" + fileParent, "w+")
 
 
@@ -60,14 +60,17 @@ def initateComponent(folderName):
 
 try :
   folderName = sys.argv[1]
+  extensionName =  'js'
+  if(len(sys.argv) == 3):
+    extensionName =  sys.argv[2]
   if str(folderName)[0].isupper():
     if not os.path.exists(folderName):
-      initateComponent(folderName)
+      initateComponent(folderName, extensionName)
     else:
       decision = raw_input(folderName + "Already Exists, override ? Y/N : ")
       if str(decision).strip().lower() == 'y':
         removeFolder(folderName)
-        initateComponent(folderName)
+        initateComponent(folderName, extensionName)
   else:
     raise CapitalizationError
 
