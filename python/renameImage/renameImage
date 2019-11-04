@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import glob
+import re
+import os
+import sys
+
+
+try:
+  renameFrom = sys.argv[1]
+  renameTo = sys.argv[2]
+
+  extensionsToCheck = ('.png', '.jpg', '.svg')
+  for file in glob.glob("*"):
+    if file.endswith(extensionsToCheck):
+      name = re.split('(\.png$|\.jpg$|\.svg$)', file)[0]
+      suffix = re.split('(\.png$|\.jpg$|\.svg$)', file)[1]
+      if re.search("@", file) :
+        name = re.split('@', file)[0]
+        suffix = '@'+re.split('@', file)[1]
+      if name == renameFrom:
+        os.rename(name+suffix, renameTo+suffix)
+        print('converted '+ name+suffix + ' to '+ renameTo+suffix)
+
+except IndexError:
+  print('Insufficient arguments, command : renamImage oldimagename(no extension) newname(uses prev extension)')
+
