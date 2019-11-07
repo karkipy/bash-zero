@@ -12,15 +12,9 @@ for file in glob.glob("*"):
   if not re.search("@", file) :
     if file.endswith(extensionsToCheck):
       name = re.split('(\.png$|\.jpg$|\.svg$)', file)[0]
-      title = "import " + name + " from " + "'./" + file + "';"
+      title = "export { default as " + name + " } from " + "'./" + file + "';"
       pngFiles.append(title)
-      export.append(name)
 
 importText = "\n".join(str(x) for x in pngFiles)
-exportText = ",\n  ".join(str(x) for x in export)
 f= open("index.js","w+")
 f.write(importText)
-f.write('\n\n')
-f.write('export {\n  ')
-f.write(exportText)
-f.write(',\n};\n')
