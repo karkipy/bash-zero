@@ -11,3 +11,8 @@ sudo curl https://github.com/karkipy/bash-zero/blob/master/python/imagesToImport
 
 This command exports image in and index file
 
+## Code
+
+```
+  imagesToImport extensionName(optional)
+```
