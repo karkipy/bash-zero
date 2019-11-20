@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+CMD="~/Library/Android/sdk/tools/emulator -list-avds"
+absPath=$(eval $CMD)
+
+index=0
+length=0
+flag=1
+options=$(echo $absPath | tr ";" "\n")
+
+upPress() {
+  index=$(($index - 1))
+  if [ $index == -1 ]
+  then
+    index=$(($length - 1))
+  fi;
+}
+
+downPress() {
+  index=$(($index + 1))
+  index=$(($index % $length))
+}
+
+
+enterPress() {
+  i=0
+  for addr in $options
+  do
+    if [ $i == $index ]
+    then
+      command="~/Library/Android/sdk/tools/emulator -avd "$addr
+    fi;
+    echo $command
+    $(eval $command)
+    flag=0
+    i=$(($i + 1))
+  done
+}
+
+keycode() {
+  read -r -sn1 t
+  echo $t
+  case $t in
+    A) upPress ;;
+    B) downPress ;;
+    "") enterPress ;;
+  esac
+}
+
+
+showOptions() {
+  echo "Choose a Simulator to open:"
+  echo ''
+  i=0;
+  for addr in $options
+  do
+    if [ $i == $index ]
+    then
+      echo "> $addr"
+    else
+      echo "  $addr"
+     fi;
+    i=$(($i + 1))
+  done
+  length=$i
+}
+
+while [  $flag == 1 ];
+do
+  showOptions
+  keycode
+done
