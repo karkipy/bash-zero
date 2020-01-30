@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import glob
+import re
+import os
+import sys
+
+
+def enlistFile(path, renameFrom, renameTo):
+  for file in os.listdir(path):
+    if file.endswith(renameFrom):
+      name = re.split(renameFrom, file)[0]
+      os.rename(path+'/'+file, path+'/'+name+renameTo)
+    if (os.path.isdir('./'+path+'/'+file)):
+      enlistFile('./'+path+'/'+file, renameFrom, renameTo)
+
+try:
+  renameFrom = sys.argv[1]
+  renameTo = sys.argv[2]
+  enlistFile('.', renameFrom, renameTo)
+
+
+except IndexError:
+  print('Insufficient arguments, command : renamImage oldimagename(no extension) newname(uses prev extension)')
+
