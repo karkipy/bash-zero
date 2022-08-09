@@ -13,7 +13,7 @@ getCookie  someCookie
 ```
 Output:
 ```bash
-document.cookie="sd;path=/";
+document.cookie="someCookie;path=/";
 ```
 ## Example 2
 
