@@ -2,5 +2,21 @@
 
 
 ```bash
-sudo curl https://raw.githubusercontent.com/karkipy/bash-zero/master/sketchCommit/sketchCommit -o /usr/local/bin/sketchCommit && sudo chmod +x /usr/local/bin/sketchCommit
+sudo curl https://raw.githubusercontent.com/karkipy/bash-zero/master/node/getCookie/getCookie -o /usr/local/bin/getCookie && sudo chmod +x /usr/local/bin/getCookie
 ```
+
+## EXAMPLE
+
+```bash
+
+getCookie  someCookie
+```
+
+## Output
+
+```bash
+document.cookie="sd;path=/";
+```
+
+
+![Screenshot](image.png)
