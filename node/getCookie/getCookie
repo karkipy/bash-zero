@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+function getHouzzCookie(someString){
+  if (!someString) {
+    console.log('Oops seems like you forgot to pass a cookie value')
+    return;
+  }
+  const temp = someString.split(';');
+  const cookies = temp.map((t) => {
+     return `document.cookie="${t.trim()};path=/";`;
+
+      
+  })
+  console.log(cookies.join('\n'));  
+}
+getHouzzCookie(process.argv[2])
